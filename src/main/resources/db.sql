@@ -1,0 +1,13 @@
+CREATE DATABASE election_db;
+\c election_db;
+CREATE USER election_db_manager WITH PASSWORD 'password';
+GRANT CONNECT ON DATABASE election_db TO election_db_manager;
+GRANT USAGE, CREATE ON SCHEMA public TO election_db_manager;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO election_db_manager;
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES
+ON ALL TABLES IN SCHEMA public TO election_db_manager;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES
+ON TABLES TO election_db_manager;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+GRANT USAGE, SELECT ON SEQUENCES TO election_db_manager;
